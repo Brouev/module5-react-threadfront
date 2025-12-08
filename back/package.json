@@ -1,5 +1,5 @@
 {
-  "name": "back",
+  "name": "module4-nodejs-threadapi",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -7,12 +7,17 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.mjs"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-jwt": "^8.5.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
     "sequelize": "^6.37.7"
