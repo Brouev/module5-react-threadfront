@@ -1,14 +1,3 @@
-
-
-// export default function Post({ post }) {
-//   return (
-//     <div className="post">
-//       <h3>@Ryu-du57</h3>
-//       <p>Aujourd'hui je me suis promené sous la pluie.</p>
-//       <Link to={`/posts/${post.id}`}>Voir le post</Link>
-//     </div>
-//   );
-// }
 import {Link} from 'react-router-dom';
 import PostDetailCard from '../PostDetailCard/PostDetailCard.jsx';
 import CommentCard from '../CommentCard/CommentCard.jsx';
