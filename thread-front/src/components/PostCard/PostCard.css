@@ -1,0 +1,37 @@
+.post-card {
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background: linear-gradient(to right, #0d0d0d, #5f5e5e);
+    border-radius: 1em;
+}
+
+.post-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.post-author-name{
+    margin-bottom: 0;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+}
+
+.post-content {
+    margin: 0;
+}
+.post-content, .post-author-name {
+    color: white;
+}
+
+.post-date {
+    color: #424242;
+    margin-bottom: 1em;
+    margin-top: 0;
+}

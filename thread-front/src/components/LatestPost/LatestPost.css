@@ -1,0 +1,25 @@
+.latest-post-card {
+    width: 70vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    background: linear-gradient(to right, #0d0d0d, #5f5e5e);
+    border-radius: 1em;
+    font-weight: bold;
+    color: white;
+    padding-left: 1em;
+}
+
+.latest-post-date {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.post-date {
+    color: #666666;
+    font-weight: normal;
+    font-size: 0.7em;
+}

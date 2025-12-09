@@ -1,0 +1,41 @@
+.post-detail-card {
+    min-height: 30vh;
+    width: 80vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+
+    background: linear-gradient(to right bottom, #0d0d0d, #5f5e5e);
+    border-radius: 1em;
+}
+
+.post-detail-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    color: white;
+    font-weight: bold;
+
+
+    margin-left: 1em;
+}
+
+.post-detail-date {
+    text-align: start;
+    margin-left: 1em;
+    margin-bottom: 3em;
+    color: #7e7e7e;
+    font-size: 0.8em;
+
+}
+
+.post-author-name {
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+ .post-content {
+    margin-top: 0;
+    margin-bottom: 0;
+ }
