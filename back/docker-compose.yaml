@@ -1,4 +1,4 @@
-name: thread-api  # <--- C'est ici qu'on nomme le "groupe" (Projet)
+name: thread-api
 services:
   backend:
     build: .
