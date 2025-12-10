@@ -14,18 +14,26 @@
 }
 ```
 
-**Réponse succès** :
+**Réponse succès (201)** :
 ```json
 {
   "user": {
     "id": 1,
     "username": "alice",
     "email": "alice@email.com",
-    "RoleId": 2
+    "RoleId": 2,
+    "createdAt": "2025-12-10T10:00:00.000Z",
+    "updatedAt": "2025-12-10T10:00:00.000Z"
   }
 }
 ```
-**Réponse erreur** :
+*Note: Un cookie `jwt` est défini.*
+
+**Réponse erreur (400)** :
+```json
+{ "message": "Les champs : Username, E-mail et Password sont requis !" }
+```
+ou
 ```json
 { "message": "Cet E-Mail existe deja" }
 ```
@@ -43,7 +51,7 @@
 }
 ```
 
-**Réponse succès** :
+**Réponse succès (200)** :
 ```json
 {
   "message": "Connexion réussie",
@@ -51,11 +59,20 @@
     "id": 1,
     "username": "alice",
     "email": "alice@email.com",
-    "RoleId": 2
+    "RoleId": 2,
+    "createdAt": "2025-12-10T10:00:00.000Z",
+    "updatedAt": "2025-12-10T10:00:00.000Z"
   }
 }
 ```
-**Réponse erreur** :
+*Note: Un cookie `jwt` est défini.*
+
+**Réponse erreur (400)** :
+```json
+{ "message": "Les champs : E-mail et Password sont requis pour la connexion !" }
+```
+
+**Réponse erreur (401)** :
 ```json
 { "message": "Identifiants incorrect" }
 ```
@@ -63,9 +80,9 @@
 ---
 
 ### POST `/logout`
-**Description** : Déconnecte l’utilisateur.
+**Description** : Déconnecte l'utilisateur (supprime le cookie).
 
-**Réponse succès** :
+**Réponse succès (200)** :
 ```json
 { "message": "Déconnexion réussie." }
 ```
@@ -74,81 +91,110 @@
 
 ## Posts
 
-### POST `/posts`
-**Description** : Crée un post (authentifié).
-
-**Body exemple** :
-```json
-{
-  "title": "Mon premier post",
-  "content": "Voici le contenu du post."
-}
-```
-
-**Réponse succès** :
-```json
-{
-  "message": "Post crée avec succès",
-  "Post": {
-    "id": 1,
-    "title": "Mon premier post",
-    "content": "Voici le contenu du post.",
-    "UserId": 1
-  }
-}
-```
-**Réponse erreur** :
-```json
-{ "message": "Un post doit contenir un titre et son contenu !" }
-```
-
----
-
 ### GET `/posts`
-**Description** : Liste tous les posts avec leurs commentaires et auteurs.
+**Description** : Récupère tous les posts avec leurs commentaires et les informations des auteurs.
 
-**Réponse succès** :
+**Réponse succès (200)** :
 ```json
 {
   "AllPostsAndComments": [
     {
       "id": 1,
       "title": "Mon premier post",
-      "content": "Voici le contenu du post.",
-      "author": { "username": "alice" },
+      "content": "Ceci est le contenu du post",
+      "createdAt": "2025-12-10T10:00:00.000Z",
+      "author": "alice",
       "comments": [
         {
           "id": 1,
           "content": "Super post !",
-          "author": { "username": "bob" }
-        },
-        {
-          "id": 2,
-          "content": "Merci pour le partage.",
-          "author": { "username": "charlie" }
+          "createdAt": "2025-12-10T10:05:00.000Z",
+          "author": "bob"
         }
       ]
     }
   ]
 }
 ```
-**Réponse erreur** :
+*Si aucun post n'existe :*
 ```json
-{ "message": "Erreur lors de la récupération de tout les posts et leurs commentaires" }
+{ "message": "Aucun Posts dans la base de données" }
+```
+
+---
+
+### POST `/posts`
+**Description** : Crée un nouveau post.
+**Auth** : Requis (Token JWT).
+
+**Body exemple** :
+```json
+{
+  "title": "Mon nouveau post",
+  "content": "Contenu intéressant"
+}
+```
+
+**Réponse succès (201)** :
+```json
+{
+  "message": "Post crée avec succès",
+  "Post": {
+    "id": 2,
+    "title": "Mon nouveau post",
+    "content": "Contenu intéressant",
+    "UserId": 1,
+    "updatedAt": "2025-12-10T10:10:00.000Z",
+    "createdAt": "2025-12-10T10:10:00.000Z"
+  }
+}
+```
+
+**Réponse erreur (400)** :
+```json
+{ "message": "Un post doit contenir un titre et son contenu !" }
 ```
 
 ---
 
 ### DELETE `/posts/:postId`
-**Description** : Supprime un post (admin ou propriétaire).
+**Description** : Supprime un post.
+**Auth** : Requis (Token JWT + Propriétaire ou Admin).
 
-**Réponse succès** :
+**Réponse succès (200)** :
 ```json
 { "message": "Post supprimé avec succès" }
 ```
-**Réponse erreur** :
+
+**Réponse erreur (404)** :
 ```json
-{ "message": "Suppression non autorisée." }
+{ "message": "Erreur lors de la suppresion du post" }
+```
+
+---
+
+### GET `/users/:userId/posts`
+**Description** : Récupère les posts d'un utilisateur spécifique.
+
+**Réponse succès (200)** :
+```json
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Mon post",
+      "content": "...",
+      "UserId": 1,
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  ],
+  "username": "alice"
+}
+```
+*Si l'utilisateur n'a aucun post :*
+```json
+{ "message": "L'utilisateur n'a aucun post" }
 ```
 
 ---
@@ -156,25 +202,29 @@
 ## Commentaires
 
 ### POST `/posts/:postId/comments`
-**Description** : Ajoute un commentaire à un post (authentifié).
+**Description** : Ajoute un commentaire à un post.
+**Auth** : Requis (Token JWT).
 
 **Body exemple** :
 ```json
 {
-  "content": "Super post !"
+  "content": "Mon commentaire"
 }
 ```
 
-**Réponse succès** :
+**Réponse succès (201)** :
 ```json
 {
   "id": 1,
-  "content": "Super post !",
-  "PostId": 1,
-  "UserId": 2
+  "content": "Mon commentaire",
+  "PostId": "1",
+  "UserId": 1,
+  "updatedAt": "2025-12-10T10:15:00.000Z",
+  "createdAt": "2025-12-10T10:15:00.000Z"
 }
 ```
-**Réponse erreur** :
+
+**Réponse erreur (400)** :
 ```json
 { "message": "Un commentaire doit avoir un contenu" }
 ```
@@ -182,49 +232,15 @@
 ---
 
 ### DELETE `/comments/:commentId`
-**Description** : Supprime un commentaire (admin ou propriétaire).
+**Description** : Supprime un commentaire.
+**Auth** : Requis (Token JWT + Propriétaire ou Admin).
 
-**Réponse succès** :
+**Réponse succès (200)** :
 ```json
 { "message": "Commentaire supprimé avec succès" }
 ```
-**Réponse erreur** :
+
+**Réponse erreur (404)** :
 ```json
-{ "message": "Suppression non autorisée." }
+{ "message": "Erreur lors de la suppresion du commentaire" }
 ```
-
----
-
-## Utilisateurs
-
-### GET `/users/:userId/posts`
-**Description** : Liste les posts d’un utilisateur.
-
-**Réponse succès** :
-```json
-{
-  "posts": [
-    {
-      "id": 1,
-      "title": "Mon premier post",
-      "content": "Voici le contenu du post.",
-      "UserId": 1
-    }
-  ],
-  "username": "alice"
-}
-```
-**Réponse erreur** :
-```json
-{ "message": "Erreur lors de la récupération des posts de l'utilisateur" }
-```
-
----
-
-## Sécurité et rôles
-
-- Authentification par JWT (stocké dans un cookie).
-- Middleware pour vérifier le token et le rôle (admin/propriétaire).
-- Les routes de création/suppression de posts et commentaires nécessitent d’être connecté.
-
----

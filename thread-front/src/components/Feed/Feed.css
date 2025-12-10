@@ -1,0 +1,25 @@
+/* src/pages/Feed.css */
+
+.feed {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.feed h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.feed p {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+}

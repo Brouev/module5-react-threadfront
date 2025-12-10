@@ -1,0 +1,35 @@
+.register {
+    display: flex;
+    align-items: left;
+    background-color: #1B1B1B;
+    width: 393px;
+    height: 852px;
+}
+
+.CreationCompte {
+    width: 300px;
+    height: 131px;
+    top: 55px;
+    left: 51px;
+    font: Josefin Sans;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 44px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #F6F6F6;
+    border-radius: 16%;
+    padding: 16px 8px 16px 8px;
+    border: 0 0 1px 0;
+
+}
+.groupe2 {
+    width: 276px;
+    height: 415px;
+    top: 223px;
+    left: 51px;
+    border-radius: 12px;
+    border: 5px solid #FFFFFF
+    
+}

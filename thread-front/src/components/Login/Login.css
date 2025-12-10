@@ -1,0 +1,64 @@
+.body {
+    background-color:#1B1B1B;
+;
+}
+
+.Connection {
+    width: 300px;
+    height: 45;
+    top: 79px;
+    left: 42px;
+    font: Josefin Sans;
+    font-weight: 700;
+    font-style: bold;
+    size: 58px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #F6F6F6;
+
+ ;
+
+}
+
+.Se_connecter {
+padding: 16px 8px 16px 8px;
+border-radius: 16%;
+width: 146;
+height: 36;
+opacity: 1;
+top: 501px;
+left: 116px;
+
+font-family: Josefin Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 5%;
+text-align: center;
+vertical-align: middle;
+background: #000000;
+}
+
+
+.creerCompte {
+width: 276;
+height: 67;
+opacity: 0.28;
+top: 561px;
+left: 59px;
+font-family: Josefin Sans;
+font-weight: 700;
+font-style: Bold;
+font-size: 20px;
+line-height: 150%;
+letter-spacing: 24%;
+vertical-align: middle;
+text-decoration: underline;
+text-decoration-style: solid;
+text-decoration-thickness: 0%;
+text-decoration-skip-ink: auto;
+
+
+}

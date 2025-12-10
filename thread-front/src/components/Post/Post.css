@@ -1,0 +1,106 @@
+/* Conteneur principal */
+.post-container {
+    max-width: 900px;                                   /* Limite sur desktop */
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #1B1B1B 0%, #2D2D2D 100%);  /* Dégradé */
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    color: #ffffff;                                     /* Texte blanc par défaut */
+}
+
+/* Section du post détaillé */
+.post-detail {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Blanc transparent */
+}
+
+.post-detail h1 {
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    color: #ffffff;                                     /* Blanc */
+    font-weight: 600;
+}
+
+/* Section des commentaires */
+.post-comments {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);              /*  Noir transparent */
+    border-radius: 8px;
+    max-height: 400px;                                  /* Scroll si trop long */
+    overflow-y: auto;
+}
+
+.post-comments p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #cccccc;                                     /* Gris clair */
+    font-weight: bold;
+}
+
+/* Boutons de navigation */
+.nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);   /* Cohérent */
+}
+
+.nav-buttons a {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-buttons a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.nav-buttons a:active {
+    transform: scale(0.95);                             /* Effet de clic */
+}
+
+/* Responsive (sur mobile) */
+@media (max-width: 768px) {
+    .post-container {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .post-detail h1 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .post-comments {
+        padding: 12px;
+        margin-bottom: 16px;
+        max-height: 300px;
+    }
+
+    .nav-buttons {
+        gap: 8px;
+        margin-top: 16px;
+        padding-top: 12px;
+    }
+
+    .nav-buttons a {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+}

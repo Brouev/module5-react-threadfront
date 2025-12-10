@@ -16,8 +16,8 @@ router.post("/posts", verifyToken, async (req, res) => {
         }
 
 
-        if (!req.body.title && !req.body.content) {
-            return res.status(404).json({ message: "Un post doit contenir un titre et son contenu !"});
+        if (!req.body.title || !req.body.content) {
+            return res.status(400).json({ message: "Un post doit contenir un titre et son contenu !" });
         }
         const post = await Post.create({
             "title": req.body.title,
@@ -58,12 +58,27 @@ router.get("/posts", async (req, res) => {
 
             ]
         });
+
+        const formattedPosts = posts.map((post => ({
+            id: post.id,
+            title: post.title,
+            content: post.content,
+            createdAt: post.createdAt,
+            author: post.author?.username || "Utilsateur inconnu",
+            comments: post.comments.map(comment => ({
+                id: comment.id,
+                content: comment.content,
+                createdAt: comment.createdAt,
+                author: comment.author?.username || "Utilisateur inconnu"
+            }))
+        })));
+
         if (posts.length > 0) {
             res.status(200).json({
-                AllPostsAndComments: posts
+                AllPostsAndComments: formattedPosts
             });
         } else {
-            res.status(404).json({ message: "Erreur lors de la récupération de tout les posts et leurs commentaires" });
+            res.status(200).json({ message: "Aucun Posts dans la base de données" });
         }
     } catch (error) {
         console.error(error);
@@ -119,13 +134,13 @@ router.delete("/comments/:commentId", verifyToken, canDeleteComment, async (req,
 router.get("/users/:userId/posts", async (req, res) => {
     try {
         const userPosts = await Post.findAll({
-            where: { userId: req.params.userId }
+            where: { UserId: req.params.userId }
         });
         const username = await getUserNameById(req.params.userId);
         if (userPosts.length > 0) {
             res.status(200).json({ posts: userPosts, username: username });
         } else {
-            res.status(404).json({ message: "Erreur lors de la récupération des posts de l'utilisateur" });
+            res.status(200).json({ message: "L'utilisateur n'a aucun post" });
         }
     } catch (error) {
         console.error(error);
