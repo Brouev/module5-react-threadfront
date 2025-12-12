@@ -60,9 +60,9 @@ export default function Login() {
                 const data = await response.json();
                 console.log("Connexion réussie", data);
                 localStorage.setItem('authToken', data.token); // Stocke le jeton d'authentification.
-               
 
-                navigate('/home'); // redirection connection reussie 
+
+                navigate('/feed'); // redirection connection reussie 
             } else {
                 // Gestion des statuts d'erreur HTTP (ex: 400, 401, 403).
                 const errorData = await response.json();
@@ -87,34 +87,41 @@ export default function Login() {
         <div className="Connexion">
             <h2>Connexion</h2>
 
-            <form onSubmit={handleSubmit}>
-                {/* Le formulaire qui déclenche `handleSubmit` lors de sa soumission. */}
+            <div className="connecteur">
 
-                <input type="email"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                // Met à jour l'état `email` à chaque frappe (contrôle du champ).
-                />
+                <form onSubmit={handleSubmit}>
+                    {/* Le formulaire qui déclenche `handleSubmit` lors de sa soumission. */}
 
-                <input type="password"
-                    placeholder="*******"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                // Met à jour l'état `password` à chaque frappe.
-                />
+                    <input type="email"
+                        className="mail"
+                        name="mail"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    // Met à jour l'état `email` à chaque frappe (contrôle du champ).
+                    />
 
-                <button type="submit" className="Se_connecter"
-                // type="submit" est crucial pour déclencher la soumission du formulaire parent.
-                >
-                    {loading ? 'Connexion en cours...' : 'Se connecter'}
-                    {/* Suggestion: Afficher l'état de chargement dans le bouton. */}
-                </button>
-            </form>
+                    <input type="password"
+                        className="pass"
+                        name="pass"
+                        placeholder="*******"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    // Met à jour l'état `password` à chaque frappe.
+                    />
+
+                    <button type="submit" className="Se_connecter"
+                    // type="submit" est crucial pour déclencher la soumission du formulaire parent.
+                    >
+                        {loading ? 'Connexion en cours...' : 'Se connecter'}
+                        {/* Suggestion: Afficher l'état de chargement dans le bouton. */}
+                    </button>
+                </form>
+            </div>
 
             <div>
 
-                <button className="creerCompte"onClick={handleRegisterClick}>
+                <button className="creerCompte" onClick={handleRegisterClick}>
                     Se créer un compte
                 </button>
 

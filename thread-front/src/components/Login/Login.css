@@ -1,64 +1,111 @@
 .body {
-    background-color:#1B1B1B;
-;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 393px;
+    height: 852px;
+
 }
 
-.Connection {
-    width: 300px;
-    height: 45;
-    top: 79px;
-    left: 42px;
+.Connexion {
     font: Josefin Sans;
-    font-weight: 700;
-    font-style: bold;
-    size: 58px;
-    line-height: 150%;
-    letter-spacing: 0%;
-    vertical-align: middle;
+    background-color: #1B1B1B;
     color: #F6F6F6;
+    width: 393px;
+   
+    font-weight: 900;
+    font-style: bold;
+    font-size: 44px;
+    line-height: 150%;
+    padding: 16px 8px 16px 8px;
 
- ;
+}
 
+.connecteur {
+    background-color: #1B1B1B;
+    color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    width: 276px;
+    height: 415px;
+    top: 223px;
+    left: 51px;
+    padding: 30px;
+    font-weight: 900;
+}
+
+
+.mail,
+.pass {
+    background-color: #1B1B1B;
+    color: #F6F6F6;
+    letter-spacing: 10px;
+    font-weight: bolder;
+    padding: 10px;
+    /* J'ai réduit le padding à 10px car 30% semble trop grand */
+    margin-bottom: 15px;
+
+    /* *** ÉTAPE 1 : Supprimer la bordure de base *** */
+    border: none;
+    box-shadow: none;
+}
+
+.mail:focus,
+.pass:focus {
+    /* *** ÉTAPE 2 : Supprimer l'outline (contour de focus) *** */
+    outline: none;
+    border: none;
+    /* Redondant mais sécurisant */
+    box-shadow: none;
+    /* Supprime toute ombre qui pourrait ressembler à une bordure */
+
+    /* S'assurer que le fond et le texte restent corrects */
+    background-color: #1B1B1B;
+    color: #F6F6F6;
+}
+
+.mail::placeholder,
+.pass::placeholder {
+    /* *** ÉTAPE 3 : Styliser le texte d'aide *** */
+    color: #F6F6F6;
 }
 
 .Se_connecter {
-padding: 16px 8px 16px 8px;
-border-radius: 16%;
-width: 146;
-height: 36;
-opacity: 1;
-top: 501px;
-left: 116px;
 
-font-family: Josefin Sans;
-font-weight: 700;
-font-style: Bold;
-font-size: 20px;
-line-height: 150%;
-letter-spacing: 5%;
-text-align: center;
-vertical-align: middle;
-background: #000000;
+    background-color: #F6F6F6;
+    color: #1B1B1B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5%;
+    width: 202px;  
+    padding: 30px;
 }
 
-
 .creerCompte {
-width: 276;
-height: 67;
-opacity: 0.28;
-top: 561px;
-left: 59px;
-font-family: Josefin Sans;
-font-weight: 700;
-font-style: Bold;
-font-size: 20px;
-line-height: 150%;
-letter-spacing: 24%;
-vertical-align: middle;
-text-decoration: underline;
-text-decoration-style: solid;
-text-decoration-thickness: 0%;
-text-decoration-skip-ink: auto;
+    width: 276;
+    border-radius: 12%;
+    opacity: 0.28;
+
+    font-family: Josefin Sans;
+    font-weight: 900;
+    font-style: Bold;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 24%;
+    vertical-align: middle;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 0%;
+    text-decoration-skip-ink: auto;
 
 
+}
+
+.deconnexion {
+    margin-top: 15px;
+    background-color: white;
+    color: noir;
+    border: none;
+    padding: 10px;
 }
