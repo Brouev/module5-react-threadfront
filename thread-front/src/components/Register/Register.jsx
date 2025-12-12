@@ -1,8 +1,9 @@
 // Importe le hook 'useState' de React pour gérer l'état local du composant.
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import "./Register.css"
 
 // Définition du composant fonctionnel 'Register'.
-export function Register() {
+function Register() {
 
     // Déclare l'état 'email' et sa fonction de mise à jour 'setEmail'. 
     const [email, setEmail] = useState('');
@@ -15,7 +16,7 @@ export function Register() {
 
     // Fonction exécutée lors de la soumission du formulaire.
     // Utilisation de useCallback pour une meilleure performance si le composant est re-rendu.
-    const handleSubmit = useCallback((event) => {
+    const handleSubmit = useCallback( async(event) => {
         // Empêche le rechargement de la page par défaut du formulaire.
         event.preventDefault();
 
@@ -32,7 +33,18 @@ export function Register() {
 
         };
 
-// TODO:fetch
+const response = await fetch("http://localhost:3000/register", {
+    method:"POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        username: pseudo,
+        email: email,
+        password: password
+    })
+})
+
 
     }, [email, password, confirmPassword, pseudo]); // Dépendances pour useCallback
 
@@ -53,7 +65,7 @@ export function Register() {
                             type="text" // Changé de 'speudo' à 'text' pour la sémantique HTML
                             placeholder="Pseudo"
                             value={pseudo}
-                            onChange={(e) => setSpeudo(e.target.value)}
+                            onChange={(e) => setPseudo(e.target.value)}
                         />
 
                         {/* Champ Email : doit être lié à l'état 'email'. */}
@@ -93,3 +105,4 @@ export function Register() {
 }
 
 
+export default Register;
