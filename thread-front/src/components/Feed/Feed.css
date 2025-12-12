@@ -1,25 +1,86 @@
-/* src/pages/Feed.css */
+/* src/components/Feed/Feed.css */
 
-.feed {
-  max-width: 900px;
+.feed-page {
+  max-width: 390px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+  color: #ffffff;
+  border: 15px solid #333;
+  border-radius: 50px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 0 1px #444;
+  overflow: hidden;
 }
 
-.feed h1 {
+
+
+.page-title {
   font-size: 32px;
-  color: #333;
-  margin-bottom: 30px;
+  color: #ffffff;
+  margin: 20px 0 40px 20px;  /* Aligné à gauche */
+  font-weight: 600;
+  border-left: 2px solid white
+  ;
 }
 
 .posts-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  max-width: 400px;  /* Largeur réduite */
 }
 
-.feed p {
-  text-align: center;
-  color: #666;
-  font-size: 16px;
+.feed-error {
+  background-color: #ff5555;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }
+
+/* Pour les posts dans le feed */
+.post-item {
+  background-color: #2a2a2a;  
+  border-radius: 12px;
+  padding: 16px;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feed-page {
+    padding: 12px;
+  }
+
+  /* .page-title {
+    font-size: 24px;
+    margin: 16px 0 32px 12px;
+  } */
+.page-title {
+  font-size: 28px;
+  color: #ffffff;
+  margin: 0;
+  padding: 24px 0 20px 24px;
+  font-weight: 700;
+  border-left: 4px solid #ffffff;
+  padding-left: 16px;
+}
+  /* .posts-list {
+    max-width: 100%;
+    gap: 12px;
+  } */
+
+  .posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 20px 20px 20px;
+  width: 100%;
+}
+
+  .post-item {
+    padding: 12px;
+  }
+}
+

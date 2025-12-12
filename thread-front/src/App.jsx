@@ -6,6 +6,7 @@ import Register from "./components/Register/Register.jsx";
 import PostDetailCard from "./components/PostDetailCard/PostDetailCard.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import AddPost from "./components/AddPost/AddPost.jsx";
+import Post from "./components/AddComment/AddComment.jsx";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -18,6 +19,7 @@ function App() {
       <Route path="/posts/:postId" element={<PostDetailCard currentUser={currentUser} />} />
       <Route path="/profile" element={<Profile currentUser={currentUser} />} />
       <Route path="/add-post" element={<AddPost currentUser={currentUser} />} />
+      
     </Routes>
   );
 }

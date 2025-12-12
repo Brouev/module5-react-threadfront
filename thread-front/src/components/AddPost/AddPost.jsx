@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { request } from "../services/httpClient";
+import { request } from "../../services/httpClient";
 
 export default function AddPost() {
   const [content, setContent] = useState("");

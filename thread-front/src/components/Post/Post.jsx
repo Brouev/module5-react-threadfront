@@ -37,7 +37,7 @@ export default function Post({ post, currentUser, onPostDeleted }) {
 
   return (
     <div className="post-page">
-      <h1 className="page-title">Post</h1>
+      
 
       <PostDetailCard post={post} />
 

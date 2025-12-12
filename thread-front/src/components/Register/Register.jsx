@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Définition du composant fonctionnel 'Register'.
-export function Register() {
+function Register() {
 
     // Déclare l'état 'email' et sa fonction de mise à jour 'setEmail'. 
     const [email, setEmail] = useState('');
