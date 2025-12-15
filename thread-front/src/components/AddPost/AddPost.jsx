@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { request } from "../../services/httpClient";
 
-export default function AddPost() {
+function AddPost() {
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -11,42 +12,42 @@ export default function AddPost() {
     e.preventDefault();
     setError("");
 
-    if (!content.trim()) {
-      setError("Le post ne doit pas être vide");
+    if (!title.trim() || !content.trim()) {
+      setError("Titre et contenu sont obligatoires.");
       return;
     }
 
     try {
       await request("/posts", {
         method: "POST",
-        body: { content },
-        auth: true, // send cookies JWT
+        body: { title, content },
+        auth: true, // cookie JWT
       });
-
-      //redirection autofeed après post
       navigate("/");
     } catch (err) {
-      setError(err.message || "Erreur lors de la création du post");
+      setError(err.message || "Erreur lors de la création du post.");
     }
   }
-
-  const currentDate = new Date().toLocaleString(); // date sous zone
 
   return (
     <div className="new-post-page">
       <h1 className="page-title">New Post</h1>
 
       <form onSubmit={handleSubmit} className="new-post-form">
-        <div className="new-post-card">
-          <textarea
-            className="new-post-textarea"
-            placeholder="Tapez votre post ici ..."
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
+        <input
+          type="text"
+          className="new-post-title"
+          placeholder="Titre du post"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-          <p className="new-post-date">{currentDate}</p>
-        </div>
+        <textarea
+          className="new-post-textarea"
+          placeholder="Tape ton post ici..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
 
         {error && <p className="new-post-error">{error}</p>}
 
@@ -57,3 +58,5 @@ export default function AddPost() {
     </div>
   );
 }
+
+export default AddPost;

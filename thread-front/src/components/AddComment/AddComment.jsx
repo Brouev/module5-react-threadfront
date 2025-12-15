@@ -25,5 +25,5 @@ export function AddComment({ onSubmit }) {
     </form>
   );
 }
-
+// Essai juste ce lundi 15 ajouter l'export par défaut
 export default AddComment;

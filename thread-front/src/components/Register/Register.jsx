@@ -1,29 +1,61 @@
-// Importe le hook 'useState' de React pour gérer l'état local du composant.
 import { useState, useCallback } from "react";
-import "./Register.css"
-
+import "./Register.css";
+import { useNavigate } from "react-router-dom";
 // Définition du composant fonctionnel 'Register'.
-function Register() {
-
+function Register({ setCurrentUser }) {
     // Déclare l'état 'email' et sa fonction de mise à jour 'setEmail'. 
-    const [email, setEmail] = useState('');
-    // Déclare l'état 'password' et sa fonction de mise à jour 'setPassword'.
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+    // Déclare l'état 'email' et sa fonction de mise à jour 'setEmail'. 
+  const [password, setPassword] = useState("");
     // Déclare l'état 'confirmPassword' pour la vérification du mot de passe.
-    const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState("");
     // Déclare l'état 'speudo' (pseudo) et sa fonction de mise à jour 'setSpeudo'.
-    const [pseudo, setPseudo] = useState('');
+  const [pseudo, setPseudo] = useState("");
 
-    // Fonction exécutée lors de la soumission du formulaire.
+  // Fonction exécutée lors de la soumission du formulaire.
     // Utilisation de useCallback pour une meilleure performance si le composant est re-rendu.
-    const handleSubmit = useCallback(async (event) => {
-        // Empêche le rechargement de la page par défaut du formulaire.
-        event.preventDefault();
+  const navigate = useNavigate();
+
+  const handleSubmit = useCallback(
+    async (event) => {
+      event.preventDefault();
 
         // Logique de validation : vérifie si les deux champs de mot de passe correspondent.
-        if (password !== confirmPassword) {
-            alert("Les mots de passe ne correspondent pas !");
+      if (password !== confirmPassword) {
+        alert("Les mots de passe ne correspondent pas !");
             return; // Arrête la fonction si la validation échoue.
+      }
+
+      try {
+        const response = await fetch("http://localhost:3000/register", {
+          method:"POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            username: pseudo,
+            email,
+            password,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Inscription réussie", data);
+
+          if (setCurrentUser) {
+            setCurrentUser(data.user);
+          }
+
+          navigate("/");
+        } else {
+          const errData = await response.json();
+          alert(
+            `Échec de l'inscription : ${
+              errData.message || "Veuillez vérifier les champs."
+            }`
+          );
         }
 
         const userData = {

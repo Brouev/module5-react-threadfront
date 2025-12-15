@@ -1,0 +1,146 @@
+/* src/components/Settings/Settings.css */
+/* PHONE FRAME */
+.settings-page {
+max-width: 390px;
+margin: 0 auto;
+padding: 0;
+background-color: #1a1a1a;
+min-height: 852px;
+color: #ffffff;
+border: 15px solid #333;
+border-radius: 50px;
+box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 0 1px #444;
+overflow: hidden;
+}
+/* TITRE */
+.settings-title {
+font-size: 28px;
+color: #ffffff;
+margin: 0;
+padding: 24px 0 20px 24px;
+font-weight: 700;
+border-left: 4px solid #ffffff;
+padding-left: 16px;
+}
+/* SECTIONS */
+.settings-section {
+background-color: #2a2a2a;
+border-radius: 12px;
+padding: 16px;
+margin: 0 20px 16px 20px;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.settings-section h2 {
+font-size: 16px;
+color: #ffffff;
+margin: 0 0 12px 0;
+font-weight: 600;
+}
+.settings-section p {
+margin: 8px 0;
+font-size: 14px;
+color: #cccccc;
+}
+/* BOÎTE INFO */
+.settings-info {
+background-color: rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+padding: 12px;
+margin-top: 12px;
+}
+.settings-info p {
+margin: 8px 0;
+font-size: 13px;
+}
+.settings-info strong {
+color: #ffffff;
+display: block;
+margin-bottom: 4px;
+font-size: 12px;
+}
+/* BOUTONS */
+.settings-btn {
+display: block;
+width: 100%;
+padding: 12px 16px;
+border: none;
+border-radius: 8px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-bottom: 10px;
+}
+.settings-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.settings-btn:active {
+transform: translateY(0);
+}
+.settings-btn:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+/* BOUTON SECONDAIRE */
+.settings-btn--secondary {
+background-color: #444444;
+color: #ffffff;
+}
+.settings-btn--secondary:hover:not(:disabled) {
+background-color: #555555;
+}
+/* BOUTON DANGER */
+.settings-btn--danger {
+background-color: #ff4444;
+color: #ffffff;
+}
+.settings-btn--danger:hover:not(:disabled) {
+background-color: #cc0000;
+}
+/* TEXTE D'AIDE */
+.settings-hint {
+font-size: 12px;
+color: #888888;
+margin-top: 8px;
+font-style: italic;
+}
+/* ZONE DANGER */
+.settings-danger {
+border-color: rgba(255, 68, 68, 0.3) !important;
+background-color: rgba(255, 68, 68, 0.05);
+}
+.settings-warning {
+color: #ff8888;
+font-weight: 600;
+padding: 12px;
+background-color: rgba(255, 68, 68, 0.1);
+border-radius: 6px;
+margin: 0 20px 16px 20px;
+}
+/* RESPONSIVE - Mobile */
+@media (max-width: 768px) {
+.settings-page {
+border: 15px solid #333;
+border-radius: 50px;
+max-width: 390px;
+}
+.settings-title {
+font-size: 28px;
+padding: 24px 0 20px 24px;
+margin: 0;
+border-left: 4px solid #ffffff;
+padding-left: 16px;
+}
+.settings-section {
+padding: 16px;
+margin: 0 20px 16px 20px;
+}
+.settings-btn {
+width: 100%;
+margin-bottom: 10px;
+}
+.settings-warning {
+margin: 0 20px 16px 20px;
+}
+}
