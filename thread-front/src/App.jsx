@@ -18,7 +18,7 @@ function App() {
 
       <Route path="/login" element={<Login setCurrentUser={setCurrentUser} />} />
       <Route path="/register" element={<Register setCurrentUser={setCurrentUser} />} />
-      <Route element={<Guard currentUser={currentUser} />}>
+      <Route element={<Guard currentUser={currentUser} />} />
       <Route path="/posts/:postId" element={<Post currentUser={currentUser} />} />
       <Route path="/profile" element={<Profile currentUser={currentUser} />} />
       <Route path="/add-post" element={<AddPost currentUser={currentUser} />} />
