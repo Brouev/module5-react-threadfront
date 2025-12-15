@@ -25,3 +25,5 @@ export function AddComment({ onSubmit }) {
     </form>
   );
 }
+
+export default AddComment;

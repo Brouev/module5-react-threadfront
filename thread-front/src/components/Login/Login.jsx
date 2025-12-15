@@ -60,7 +60,7 @@ export default function Login() {
                 const data = await response.json();
                 console.log("Connexion réussie", data);
                 localStorage.setItem('authToken', data.token); // Stocke le jeton d'authentification.
-               
+
 
                 navigate('/home'); // redirection connection reussie 
             } else {
@@ -85,7 +85,12 @@ export default function Login() {
         // Le JSX (HTML-like syntaxe) que le composant rend.
 
         <div className="Connexion">
-            <h2>Connexion</h2>
+            <div className="TitleSquare">
+                <svg className="RectangleLogin" width="3" height="89" viewBox="0 0 3 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+                </svg>
+                <h2>Connexion</h2>
+
+            </div>
 
             <form onSubmit={handleSubmit}>
                 {/* Le formulaire qui déclenche `handleSubmit` lors de sa soumission. */}
@@ -114,7 +119,7 @@ export default function Login() {
 
             <div>
 
-                <button className="creerCompte"onClick={handleRegisterClick}>
+                <button className="creerCompte" onClick={handleRegisterClick}>
                     Se créer un compte
                 </button>
 
@@ -123,3 +128,4 @@ export default function Login() {
         </div>
     );
 }
+

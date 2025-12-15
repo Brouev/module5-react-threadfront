@@ -16,7 +16,7 @@ function Register() {
 
     // Fonction exécutée lors de la soumission du formulaire.
     // Utilisation de useCallback pour une meilleure performance si le composant est re-rendu.
-    const handleSubmit = useCallback( async(event) => {
+    const handleSubmit = useCallback(async (event) => {
         // Empêche le rechargement de la page par défaut du formulaire.
         event.preventDefault();
 
@@ -33,17 +33,17 @@ function Register() {
 
         };
 
-const response = await fetch("http://localhost:3000/register", {
-    method:"POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        username: pseudo,
-        email: email,
-        password: password
-    })
-})
+        const response = await fetch("http://localhost:3000/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: pseudo,
+                email: email,
+                password: password
+            })
+        })
 
 
     }, [email, password, confirmPassword, pseudo]); // Dépendances pour useCallback
@@ -51,57 +51,69 @@ const response = await fetch("http://localhost:3000/register", {
 
 
 
-        // Le 'return' principal du composant, qui définit le JSX (la structure HTML) à afficher.
-        return (
-            <div className="register" id="register" >
-                <h2 className="CreationCompte">Création de compte</h2><br />
+    // Le 'return' principal du composant, qui définit le JSX (la structure HTML) à afficher.
+    return (
+        <div className="register" id="register" >
 
-                <div className="Groupe2">
-                    {/* Le formulaire est lié à la fonction handleSubmit lors de sa soumission. */}
-                    <form onSubmit={handleSubmit}>
+            <div className="Groupe1"> 
 
-                        {/* Champ Pseudo : doit être lié à l'état 'speudo' via value et onChange. */}
-                        <input
-                            type="text" // Changé de 'speudo' à 'text' pour la sémantique HTML
-                            placeholder="Pseudo"
-                            value={pseudo}
-                            onChange={(e) => setPseudo(e.target.value)}
-                        />
+                <svg className="Rectangle-4" width="3" height="89" viewBox="0 0 3 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="3" height="89" fill="white" />
+                </svg>
 
-                        {/* Champ Email : doit être lié à l'état 'email'. */}
-                        <input
-                            type="email"
-                            placeholder="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-
-                        {/* Champ Mot de passe : doit être lié à l'état 'password'. */}
-                        <input
-                            type="password"
-                            placeholder="mot de passe"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-
-                        {/* Champ Confirmation Mot de passe : doit être lié à l'état 'confirmPassword'. */}
-                        <input
-                            type="password"
-                            placeholder="mot de passe encore"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-
-
-                        {/* Bouton de soumission : type 'submit' déclenche le formulaire et handleSubmit. */}
-                        <button type="submit">
-                            Créer un compte
-                        </button>
-                    </form>
-                </div>
+                <h2 className="CreationCompte">Creation de compte</h2><br />
             </div>
-        );
-    
+
+            <div className="Groupe2">
+                {/* Le formulaire est lié à la fonction handleSubmit lors de sa soumission. */}
+                <form onSubmit={handleSubmit}>
+
+                    {/* Champ Pseudo : doit être lié à l'état 'speudo' via value et onChange. */}
+                    <input
+                        type="text" // Changé de 'speudo' à 'text' pour la sémantique HTML
+                        className="pseudo"
+                        placeholder="@Pseudo"
+                        value={pseudo}
+                        onChange={(e) => setPseudo(e.target.value)}
+                    />
+
+                    {/* Champ Email : doit être lié à l'état 'email'. */}
+                    <input
+                        type="email"
+                        className="email"
+                        placeholder="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    {/* Champ Mot de passe : doit être lié à l'état 'password'. */}
+                    <input
+                        type="password"
+                        className="password"
+                        placeholder="mot de passe"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+
+                    {/* Champ Confirmation Mot de passe : doit être lié à l'état 'confirmPassword'. */}
+                    <input
+                        type="password"
+                        className="confirmPassword"
+                        placeholder="mot de passe encore"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+
+
+                    {/* Bouton de soumission : type 'submit' déclenche le formulaire et handleSubmit. */}
+                    <button type="submit" className="creerCompte">
+                        Créer un compte
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
+
 }
 
 
