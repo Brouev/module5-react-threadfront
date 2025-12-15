@@ -6,6 +6,7 @@ import Register from "./components/Register/Register.jsx";
 import Post from "./components/Post/Post.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import AddPost from "./components/AddPost/AddPost.jsx";
+import Settings from "./components/Settings/Settings.jsx";
 import Guard from "./components/Guard.jsx";
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
       <Route path="/posts/:postId" element={<Post currentUser={currentUser} />} />
       <Route path="/profile" element={<Profile currentUser={currentUser} />} />
       <Route path="/add-post" element={<AddPost currentUser={currentUser} />} />
-      </Route>
+      <Route path="/settings" element={<Settings currentUser={currentUser} />} />
+      
     </Routes>
   );
 }
