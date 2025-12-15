@@ -85,8 +85,13 @@ export default function Login({ setCurrentUser }) {
   return (
         // Le JSX (HTML-like syntaxe) que le composant rend.
 
-    <div className="Connexion">
-      <h2>Connexion</h2>
+        <div className="Connexion">
+            <div className="TitleSquare">
+                <svg className="RectangleLogin" width="3" height="89" viewBox="0 0 3 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+                </svg>
+                <h2>Connexion</h2>
+
+            </div>
 
       <form onSubmit={handleSubmit}>
                 {/* Le formulaire qui déclenche `handleSubmit` lors de sa soumission. */}
@@ -117,12 +122,13 @@ export default function Login({ setCurrentUser }) {
 
       <div>
 
-                <button className="creerCompte"onClick={handleRegisterClick}>
-          Se créer un compte
-        </button>
+                <button className="creerCompte" onClick={handleRegisterClick}>
+                    Se créer un compte
+                </button>
 
       </div>
 
     </div>
   );
 }
+
