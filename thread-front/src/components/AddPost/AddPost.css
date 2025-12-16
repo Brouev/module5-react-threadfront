@@ -1,0 +1,25 @@
+.new-post-page {
+    display: flex;
+    flex-direction: column;
+    background-color: #151414;
+    min-height: 100vh;
+    padding: 20px;
+    
+}
+
+.GroupeAddPostSquare {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    /* Espacement entre le rectangle et le texte */
+    margin-bottom: 20px;
+}
+
+.new-post {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    padding: 0px;
+    margin: 0 auto;
+    background-color: #1b1b1b;
+}

@@ -8,8 +8,6 @@
      /* Centrage horizontal de tous les éléments enfants (h2, form, div) */
     
     background-color: #1B1B1B; /* Thème sombre conservé */
-    width: 393px; /* Largeur de la vue mobile */
-    min-height: 852px; /* Hauteur flexible */
     padding: 20px;
     box-sizing: border-box; 
 }

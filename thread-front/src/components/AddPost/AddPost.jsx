@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { request } from "../../services/httpClient";
+import "./AddPost.css";
 
 function AddPost() {
   const [title, setTitle] = useState("");
@@ -31,8 +32,12 @@ function AddPost() {
 
   return (
     <div className="new-post-page">
-      <h1 className="page-title">New Post</h1>
-
+      <div className="GroupeAddPostSquare">
+        <div className="RectangleAddPost" width="3" height="89" viewBox="0 0 3 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        </div>
+        <h1 className="page-title">New Post</h1>
+      </div>
+    <div className="new-post">
       <form onSubmit={handleSubmit} className="new-post-form">
         <input
           type="text"
@@ -55,6 +60,7 @@ function AddPost() {
           Poster !
         </button>
       </form>
+      </div>
     </div>
   );
 }
