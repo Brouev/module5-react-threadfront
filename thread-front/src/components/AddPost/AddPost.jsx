@@ -69,7 +69,6 @@ export default function AddPost() {
           Poster !
         </button>
       </form>
-      </div>
     </div>
   );
 }
