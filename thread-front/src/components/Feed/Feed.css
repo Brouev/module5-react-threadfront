@@ -108,7 +108,25 @@ body {
     padding: 12px;
   }
 
-  .addPost {
-    gap: 60px;
-  }
+.addPost {
+  display: flex;
+  flex-direction: row;
+  
+  
 }
+
+.connectProfile {
+  
+  border: none;
+  color: white;
+  padding: none;
+  text-align: center;
+  text-decoration: 1B1B1B;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.connectProfile:focus {
+background-color: #1B1B1B;}
