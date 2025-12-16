@@ -1,62 +1,24 @@
 /* src/components/Feed/Feed.css */
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .feed-page {
-  max-width: 390px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
   padding: 0;
   background-color: #1a1a1a;
-  min-height: 852px;
   color: #ffffff;
-  border: 15px solid #333;
-  border-radius: 50px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 0 1px #444;
   overflow: hidden;
-}
-
-
-
-.page-title {
-  font-size: 32px;
-  color: #ffffff;
-  margin: 20px 0 40px 20px;  /* Aligné à gauche */
-  font-weight: 600;
-  border-left: 2px solid white
-  ;
-}
-
-.posts-list {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 400px;  /* Largeur réduite */
+  align-items: center;
 }
 
-.feed-error {
-  background-color: #ff5555;
-  color: #ffffff;
-  padding: 12px;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-/* Pour les posts dans le feed */
-.post-item {
-  background-color: #2a2a2a;  
-  border-radius: 12px;
-  padding: 16px;
-  word-break: break-word;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .feed-page {
-    padding: 12px;
-  }
-
-  /* .page-title {
-    font-size: 24px;
-    margin: 16px 0 32px 12px;
-  } */
 .page-title {
   font-size: 28px;
   color: #ffffff;
@@ -64,23 +26,89 @@
   padding: 24px 0 20px 24px;
   font-weight: 700;
   border-left: 4px solid #ffffff;
-  padding-left: 16px;
+  align-self: flex-start;
+  width: 100%;
 }
-  /* .posts-list {
-    max-width: 100%;
-    gap: 12px;
-  } */
 
-  .posts-list {
+.posts-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 100px 20px;
   width: 100%;
+  max-width: 600px;
+  flex: 1;
 }
+
+.feed-error {
+  background-color: #ff5555;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 0 20px 20px 20px;
+}
+
+.post-item {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 16px;
+  word-break: break-word;
+}
+
+/* ✅ BOUTONS EN BAS - CENTRÉ */
+.addPost {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.addPost-btn,
+.connectProfile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.addPost-btn:hover,
+.connectProfile-btn:hover {
+  transform: scale(1.1);
+}
+
+.addPost-btn:active,
+.connectProfile-btn:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .feed-page {
+    padding: 12px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .posts-list {
+    gap: 12px;
+  }
 
   .post-item {
     padding: 12px;
   }
-}
 
+  .addPost {
+    gap: 60px;
+  }
+}
