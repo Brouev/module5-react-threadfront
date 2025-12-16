@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { request } from "../../services/httpClient";
 import "./AddPost.css";
 
-function AddPost() {
-  const [title, setTitle] = useState("");
+function formatDateFR(date) {
+  const d = new Date(date);
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  const day = d.getDate();
+  const month = d.toLocaleString("fr-FR", { month: "short" });
+  const year = String(d.getFullYear()).slice(-2);
+  return `${hh}:${mm} - ${day} ${month} ${year}`;
+}
+
+export default function AddPost() {
+  const [title] = useState("Post");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+
+  const displayDate = useMemo(() => formatDateFR(Date.now()), []);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
-    if (!title.trim() || !content.trim()) {
-      setError("Titre et contenu sont obligatoires.");
+    if (!content.trim()) {
+      setError("Le contenu est obligatoire.");
       return;
     }
 
@@ -24,6 +37,8 @@ function AddPost() {
         body: { title, content },
         auth: true, // cookie JWT
       });
+
+      // redirect auto vers le feed
       navigate("/");
     } catch (err) {
       setError(err.message || "Erreur lors de la création du post.");
@@ -31,32 +46,26 @@ function AddPost() {
   }
 
   return (
-    <div className="new-post-page">
-      <div className="GroupeAddPostSquare">
-        <div className="RectangleAddPost" width="3" height="89" viewBox="0 0 3 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        </div>
-        <h1 className="page-title">New Post</h1>
+    <div className="addpost-page">
+      <div className="addpost-title-wrap">
+        <div className="addpost-bar" />
+        <h1 className="addpost-title">New Post</h1>
       </div>
-    <div className="new-post">
-      <form onSubmit={handleSubmit} className="new-post-form">
-        <input
-          type="text"
-          className="new-post-title"
-          placeholder="Titre du post"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
 
-        <textarea
-          className="new-post-textarea"
-          placeholder="Tape ton post ici..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
+      <form onSubmit={handleSubmit} className="addpost-form">
+        <div className="addpost-card">
+          <textarea
+            className="addpost-textarea"
+            placeholder="Tapez votre post ici ..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <div className="addpost-date">{displayDate}</div>
+        </div>
 
-        {error && <p className="new-post-error">{error}</p>}
+        {error && <p className="addpost-error">{error}</p>}
 
-        <button type="submit" className="new-post-submit">
+        <button type="submit" className="addpost-btn">
           Poster !
         </button>
       </form>
@@ -64,5 +73,3 @@ function AddPost() {
     </div>
   );
 }
-
-export default AddPost;
