@@ -5,8 +5,7 @@
     align-items: flex-start;
     /* Correctif : Alignement horizontal du contenu (équivalent à gauche) */
     background-color: #1B1B1B;
-    width: 393px;
-    height: 852px;
+    
     padding: 20px;
     /* Ajouté : Pour éviter que le contenu ne touche le bord */
 }
