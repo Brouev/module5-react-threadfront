@@ -1,39 +1,140 @@
-import { useState } from "react";
-import { request } from "../../services/httpClient";
-import PostDetailCard from "../PostDetailCard/PostDetailCard.jsx";  // Bon chemin
-import AddComment from "../AddComment/AddComment.jsx";              // Bon chemin
-import CommentCard from "../CommentCard/CommentCard.jsx";           // -Bon chemin
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import CommentCard from "../CommentCard/CommentCard.jsx";
+import { AddComment } from "../AddComment/AddComment.jsx";
+import PostDetailCard from "../PostDetailCard/PostDetailCard.jsx";
 
+export default function Post({ currentUser }) {
+  const { postId } = useParams();
+  const navigate = useNavigate();
 
-export default function Post({ post, currentUser, onPostDeleted }) {
-  if (!post) return <div></div>;
+  const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [error, setError] = useState("");
 
-  const [comments, setComments] = useState(post.comments || []);
-  const commentsCount = comments.length;
+  useEffect(() => {
+    async function fetchPost() {
+      try {
+        setError("");
+
+        const response = await fetch("http://localhost:3000/posts", {
+          method: "GET",
+        });
+
+        if (!response.ok) {
+          setError("Erreur lors du chargement du post.");
+          return;
+        }
+
+        const data = await response.json();
+        const allPosts = data.AllPostsAndComments || [];
+
+        const found = allPosts.find(
+          (p) => p.id === Number(postId)
+        );
+
+        if (!found) {
+          setError("Post introuvable.");
+          return;
+        }
+
+        setPost(found);
+        setComments(found.comments || []);
+      } catch (err) {
+        console.error(err);
+        setError("Erreur lors du chargement du post.");
+      }
+    }
+
+    fetchPost();
+  }, [postId]);
+
+  if (!post) {
+    return <div className="post-page"></div>;
+  }
 
   const isOwner =
-    currentUser && post.author && currentUser.id === post.author.id;
+    currentUser && currentUser.username === post.author;
 
   async function handleDeletePost() {
     try {
-      await request(`/posts/${post.id}`, {
+      const res = await fetch(`http://localhost:3000/posts/${post.id}`, {
         method: "DELETE",
-        auth: true,
+        credentials: "include",
       });
-      if (onPostDeleted) onPostDeleted(post.id);
+
+      if (!res.ok) {
+        setError("Erreur lors de la suppression du post.");
+        return;
+      }
+
+      navigate("/");
     } catch (err) {
       console.error(err);
+      setError("Erreur lors de la suppression du post.");
     }
   }
 
-  function handleCommentAdded(newComment) {
-    if (!newComment) return;
-    setComments((prev) => [...prev, newComment]);
+  async function handleAddComment(content) {
+    try {
+      setError("");
+
+      const res = await fetch(
+        `http://localhost:3000/posts/${post.id}/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ content }),
+        }
+      );
+
+      if (!res.ok) {
+        setError("Erreur lors de l'ajout du commentaire.");
+        return;
+      }
+
+      const raw = await res.json();
+
+      const formatted = {
+        id: raw.id,
+        content: raw.content,
+        createdAt: raw.createdAt,
+        author: currentUser?.username || "Moi",
+      };
+
+      setComments((prev) => [...prev, formatted]);
+    } catch (err) {
+      console.error(err);
+      setError("Erreur lors de l'ajout du commentaire.");
+    }
   }
 
-  function handleCommentDeleted(commentId) {
-    setComments((prev) => prev.filter((c) => c.id !== commentId));
+  async function handleCommentDeleted(commentId) {
+    try {
+      const res = await fetch(
+        `http://localhost:3000/comments/${commentId}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      if (!res.ok) {
+        setError("Erreur lors de la suppression du commentaire.");
+        return;
+      }
+
+      setComments((prev) => prev.filter((c) => c.id !== commentId));
+    } catch (err) {
+      console.error(err);
+      setError("Erreur lors de la suppression du commentaire.");
+    }
   }
+
+  const commentsCount = comments.length;
 
   return (
     <div className="post-page">
@@ -47,18 +148,13 @@ export default function Post({ post, currentUser, onPostDeleted }) {
         </button>
       )}
 
+      {error && <p className="post-error">{error}</p>}
+
       <div className="post-comments-header">
         <span>{commentsCount}</span>
-        <span className="comment-icon">💬</span>
       </div>
 
-      {currentUser && (
-        <AddComment
-          postId={post.id}
-          currentUser={currentUser}
-          onCommentAdded={handleCommentAdded}
-        />
-      )}
+      {currentUser && <AddComment onSubmit={handleAddComment} />}
 
       <div className="post-comments-list">
         {comments.length === 0 ? (
