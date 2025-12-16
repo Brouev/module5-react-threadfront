@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { request } from "../../services/httpClient";
 import "./AddPost.css";
 
-function AddPost() {
+function formatDateFR(date) {
+  const d = new Date(date);
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  const day = d.getDate();
+  const month = d.toLocaleString("fr-FR", { month: "short" });
+  const year = String(d.getFullYear()).slice(-2);
+  return `${hh}:${mm} - ${day} ${month} ${year}`;
+}
+
+export default function AddPost() {
   const [title] = useState("Post");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+
+  const displayDate = useMemo(() => formatDateFR(Date.now()), []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,8 +35,10 @@ function AddPost() {
       await request("/posts", {
         method: "POST",
         body: { title, content },
-        auth: true,
+        auth: true, // cookie JWT
       });
+
+      // redirect auto vers le feed
       navigate("/");
     } catch (err) {
       setError(err.message || "Erreur lors de la création du post.");
@@ -45,10 +60,7 @@ function AddPost() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-
-          <div className="addpost-date">
-            15:25 - 13 août 25
-          </div>
+          <div className="addpost-date">{displayDate}</div>
         </div>
 
         {error && <p className="addpost-error">{error}</p>}
@@ -60,6 +72,3 @@ function AddPost() {
     </div>
   );
 }
-
-export default AddPost;
-	
