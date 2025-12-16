@@ -17,18 +17,20 @@ export default function Feed({ currentUser }) {
 
         const response = await fetch("http://localhost:3000/posts", {
           method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
 
         if (response.ok) {
           const data = await response.json();
           console.log("Données des posts récupérées :", data);
-          // adapte au vrai format retourné par le back
           setPosts(data.AllPostsAndComments || []);
         } else {
           setError("Erreur lors du chargement des posts");
         }
       } catch (err) {
-        console.log("API non accessible");
+        console.log("API non accessible", err);
         setError("API non accessible");
       } finally {
         setLoading(false);

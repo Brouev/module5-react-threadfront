@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import "./Profile.css"; // Importe les styles CSS spécifiques au composant Profile.
 import { useNavigate } from "react-router-dom"; // Importe le Hook useNavigate de react-router-dom pour la navigation programmatique.

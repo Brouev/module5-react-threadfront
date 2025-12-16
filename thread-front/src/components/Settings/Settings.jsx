@@ -37,22 +37,6 @@ export default function Settings({ currentUser }) {
 
       {error && <p className="settings-error">{error}</p>}
 
-      {/* Section Informations Compte */}
-      {/* <section className="settings-section">
-        <h2>Informations du Compte</h2>
-        <div className="settings-info">
-          <p>
-            <strong>Nom d'utilisateur :</strong> {currentUser?.username || "N/A"}
-          </p>
-          <p>
-            <strong>Email :</strong> {currentUser?.email || "N/A"}
-          </p>
-          <p>
-            <strong>ID utilisateur :</strong> {currentUser?.id || "N/A"}
-          </p>
-        </div>
-      </section> */}
-
       {/* Section Sécurité */}
       <section className="settings-section">
         <h2>Sécurité</h2>
