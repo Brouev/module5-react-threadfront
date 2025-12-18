@@ -1,26 +1,38 @@
 .add-comment {
-  width: 70vw;
-  margin-top: 1em;
-
+  width: calc(100% - 40px);
+  max-width: 450px;
+  margin: 1em auto 0 auto;
   display: flex;
   justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
+
 
 .add-comment input {
-  width: 100%;
   padding: 0.8em 1.2em;
-
   border-radius: 2em;
   border: none;
-
-  background: linear-gradient(to right, #ffffff, #e0e0e0);
+  background-color: white;
+  color: #333;
   font-size: 1rem;
   font-weight: 500;
-
   outline: none;
+  width: calc(100% - 2.4em);
+  max-width: 410px;
 }
 
-/* Pour bien voir quand on écrit dedans */
+
 .add-comment input:focus {
   box-shadow: 0 0 0 2px #7c7c7c55;
+}
+
+.add-comment button {
+  display: none;
+}
+
+.add-comment input::placeholder {
+  color: #999;
+  opacity: 1;
 }

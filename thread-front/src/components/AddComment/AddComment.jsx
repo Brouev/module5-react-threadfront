@@ -20,8 +20,8 @@ export function AddComment({ onSubmit }) {
         onChange={(e) => setContent(e.target.value)}
       />
 
-      {/* Bouton présent pour accessibilité mais invisible */}
-      <button type="submit" style={{ display: "none" }}></button>
+            <button type="submit"></button>
+
     </form>
   );
 }

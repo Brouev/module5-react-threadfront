@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import CommentCard from "../CommentCard/CommentCard.jsx";
 import { AddComment } from "../AddComment/AddComment.jsx";
 import PostDetailCard from "../PostDetailCard/PostDetailCard.jsx";
+import "./Post.css";
 
 export default function Post({ currentUser }) {
   const { postId } = useParams();
@@ -136,6 +137,8 @@ export default function Post({ currentUser }) {
 
   const commentsCount = comments.length;
 
+  const postCount = 1;
+
   return (
     <div className="post-page">
       
@@ -150,13 +153,29 @@ export default function Post({ currentUser }) {
 
       {error && <p className="post-error">{error}</p>}
 
-      <div className="post-comments-header">
-        <span>{commentsCount}</span>
-      </div>
+<div className="post-page-header">
+  <h1>Post</h1>
+</div>
+
+
+<div className="post-comments-header">
+  <span>💬{commentsCount}</span>
+</div>
+
 
       {currentUser && <AddComment onSubmit={handleAddComment} />}
 
+      <nav className="bottom-nav">
+        <button className="nav-btn nav-left" onClick={() => navigate("/create")}>➕</button>
+        <button className="nav-btn nav-square" onClick={() => navigate("/profile")}>👤</button>
+
+        <button className="nav-btn nav-right" onClick={() => navigate("/")}>💬</button>
+      </nav>
+
+
+
       <div className="post-comments-list">
+
         {comments.length === 0 ? (
           <p>Aucun commentaire pour l’instant.</p>
         ) : (
