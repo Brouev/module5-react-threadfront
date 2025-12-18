@@ -1,106 +1,155 @@
 /* Conteneur principal */
-.post-container {
-    max-width: 900px;                                   /* Limite sur desktop */
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    background: linear-gradient(135deg, #1B1B1B 0%, #2D2D2D 100%);  /* Dégradé */
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    color: #ffffff;                                     /* Texte blanc par défaut */
+.post-page {
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 90px;
+    padding-bottom: 120px;
 }
 
-/* Section du post détaillé */
+/* Header fixe en haut */
+.post-page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.post-page-header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    border-left: 4px solid #ffffff;
+    padding-left: 12px;
+}
+
+.posts-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.nav-small {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 4px !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+}
+
+/* Post détail */
 .post-detail {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* Blanc transparent */
+    width: calc(100% - 40px);
+    max-width: 450px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 .post-detail h1 {
     margin: 0 0 20px 0;
-    font-size: 28px;
-    color: #ffffff;                                     /* Blanc */
+    font-size: 24px;
+    color: #ffffff;
     font-weight: 600;
 }
 
-/* Section des commentaires */
-.post-comments {
-    margin-bottom: 30px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.2);              /*  Noir transparent */
-    border-radius: 8px;
-    max-height: 400px;                                  /* Scroll si trop long */
-    overflow-y: auto;
+/* Commentaires header */
+.post-comments-header {
+    width: calc(100% - 40px);
+    max-width: 450px;
+    margin: 0 auto 20px auto;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #cccccc;
 }
 
-.post-comments p {
-    margin: 0 0 20px 0;
-    font-size: 16px;
-    color: #cccccc;                                     /* Gris clair */
-    font-weight: bold;
+/* Add comment */
+.add-comment {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto 20px auto;
 }
 
-/* Boutons de navigation */
-.nav-buttons {
+/* Commentaires list */
+.post-comments-list {
+    width: calc(100% - 40px);
+    max-width: 450px;
+    margin: 0 auto;
+    color: #333333;
+}
+
+.post-comments-list p {
+    color: #333333;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-around;
-    gap: 16px;
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);   /* Cohérent */
+    align-items: center;
+    padding: 0;
+    z-index: 1000;
 }
 
-.nav-buttons a {
+.nav-btn {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 6px;
     background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    cursor: pointer;
 }
 
-.nav-buttons a:hover {
+
+.nav-btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
 }
 
-.nav-buttons a:active {
-    transform: scale(0.95);                             /* Effet de clic */
+.nav-btn:active {
+    transform: scale(0.95);
 }
 
-/* Responsive (sur mobile) */
-@media (max-width: 768px) {
-    .post-container {
-        padding: 12px;
-        border-radius: 12px;
-    }
-
-    .post-detail h1 {
-        font-size: 20px;
-        margin-bottom: 12px;
-    }
-
-    .post-comments {
-        padding: 12px;
-        margin-bottom: 16px;
-        max-height: 300px;
-    }
-
-    .nav-buttons {
-        gap: 8px;
-        margin-top: 16px;
-        padding-top: 12px;
-    }
-
-    .nav-buttons a {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-    }
+.nav-square {
+    border-radius: 8px;
 }
+
+/* Hide unused */
+.nav-buttons {
+    display: none;
+}
+
+.post-container {
+    display: none;
+}
+
+.post-delete-btn,
+.post-error {
+    margin: 20px auto;
+    width: calc(100% - 40px);
+    max-width: 450px;
+}
+

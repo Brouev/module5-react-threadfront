@@ -1,5 +1,7 @@
 .post-card {
-    width: 70vw;
+    width: 100%;
+    max-width: 450px;
+
 
     display: flex;
     flex-direction: column;
@@ -19,7 +21,7 @@
     margin-right: 1em;
 }
 
-.post-author-name{
+.post-author-name {
     margin-bottom: 0;
     margin-top: 0.5em;
     font-size: 1.5em;
@@ -28,7 +30,9 @@
 .post-content {
     margin: 0;
 }
-.post-content, .post-author-name {
+
+.post-content,
+.post-author-name {
     color: white;
 }
 
