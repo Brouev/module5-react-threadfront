@@ -130,6 +130,10 @@ export default function Login({setCurrentUser}) {
 
         </div>
 
+      <div className="creerCompte">
+        <button className="creerCompteButtonLogin" onClick={handleRegisterClick}>
+          Se créer un compte
+        </button>
       </div>
     )
   );
