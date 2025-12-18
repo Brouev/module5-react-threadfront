@@ -92,16 +92,16 @@ function Register({ setCurrentUser }) {
           <rect width="3" height="89" fill="white" />
         </svg>
 
-        <h2 className="CreationCompte">Creation de compte</h2><br />
+        <h2 className="CreationCompte">Creation de Compte</h2><br />
       </div>
 
       <div className="Groupe2">
         {/* Le formulaire est lié à la fonction handleSubmit lors de sa soumission. */}
         <form onSubmit={handleSubmit}>
 
-          {/* Champ Pseudo : doit être lié à l'état 'speudo' via value et onChange. */}
+          {/* Champ Pseudo : doit être lié à l'état 'pseudo' via value et onChange. */}
           <input
-            type="text" // Changé de 'speudo' à 'text' pour la sémantique HTML
+            type="text"
             className="pseudo"
             placeholder="@Pseudo"
             value={pseudo}
@@ -135,11 +135,12 @@ function Register({ setCurrentUser }) {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-
-          {/* Bouton de soumission : type 'submit' déclenche le formulaire et handleSubmit. */}
-          <button type="submit" className="creerCompte">
-            Créer un compte
-          </button>
+          <div className="creerCompte">
+            {/* Bouton de soumission : type 'submit' déclenche le formulaire et handleSubmit. */}
+            <button type="submit" className="creerCompteButtonRegister">
+              Créer un compte
+            </button>
+          </div>
         </form>
       </div>
     </div>
