@@ -5,42 +5,46 @@
     /* Représente le conteneur principal, équivalent au .register de l'autre page */
     display: flex;
     flex-direction: column;
-     /* Centrage horizontal de tous les éléments enfants (h2, form, div) */
-    
-    background-color: #1B1B1B; /* Thème sombre conservé */
+    /* Centrage horizontal de tous les éléments enfants (h2, form, div) */
+    min-height: 100vh;
+    background-color: #1B1B1B;
+    /* Thème sombre conservé */
     padding: 20px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+
 }
+
 .TitleSquare {
     /* Conteneur pour le rectangle décoratif et le titre */
+    margin-top: 51px;
+    /* Marge supérieure (inspiré de .CreationCompte) */
+    margin-bottom: 40px;
     display: flex;
     flex-direction: row;
-    align-items: center; /* Alignement vertical centré pour les éléments enfants */
-    gap: 10px; /* Espacement entre le rectangle et le texte */
+    align-items: center;
+    /* Alignement vertical centré pour les éléments enfants */
+    gap: 10px;
+    /* Espacement entre le rectangle et le texte */
 }
 
 .RectangleLogin {
     /* Rectangle décoratif vertical à gauche du titre */
     width: 3px;
-    height: 89px;
+    height: 40px;
     background: #FFFFFF;
     opacity: 1;
-    margin-bottom: 10px; /* Espacement entre le rectangle et le titre */
+
 }
 
 .Connexion h2 {
-    /* Style pour le titre <h2>Connexion</h2> */
-    width: 350px; 
-    margin-top: 51px; /* Marge supérieure (inspiré de .CreationCompte) */
-    margin-bottom: 40px; 
-    
+
+
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
-    font-size: 44px; 
+    font-size: 50px;
     line-height: 150%;
-    
-    color: #F6F6F6; 
-    
+    color: #F6F6F6;
+
 }
 
 /* ==================================== */
@@ -51,58 +55,56 @@
 .Connexion form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre les inputs et le bouton à l'intérieur du formulaire */
+    align-items: center;
     width: 100%;
+
 }
 
 /* Style générique des inputs (cohérence avec register.css) */
-input {
+.email,
+.password {
     background-color: #1B1B1B;
     border: none;
-    border-bottom: 2px solid #F6F6F6; /* Bordure basse pour visibilité dans le thème sombre */
-    width: 100%;
-    max-width: 276px; /* Taille maximale cohérente avec .groupe2 */
-    height: 40px;
-    margin-bottom: 30px; 
-    
+    margin-bottom: 30px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 900;
-    font-size: 16px; 
+    font-size: 20px;
     line-height: 150%;
-    padding: 10px 0; 
-    letter-spacing: 0.5cap;
+    padding: 10px 0;
+    letter-spacing: 2cap;
     color: #F6F6F6;
-    outline: none; 
+    outline: none;
 }
 
 input::placeholder {
     color: #F6F6F6;
-    opacity: 0.7; 
+    opacity: 0.7;
 }
 
 
 
 .Se_connecter {
     /* Ce bouton est géré par Flexbox dans le formulaire, mais il est toujours centré */
-    display: block; 
-    width: 176px; 
-    height: 67px; 
-    opacity: 1; 
-    margin-top: 30px; /* Ajout d'une marge pour espacer du dernier input */
+    display: block;
+
+    opacity: 1;
+    margin-top: 30px;
+    /* Ajout d'une marge pour espacer du dernier input */
     margin-bottom: 20px;
 
     /* Couleurs inversées par rapport à .creerCompte dans register.css */
-    background-color: #F6F6F6; 
-    color: #1B1B1B; 
+    background-color: #F6F6F6;
+    color: #1B1B1B;
     border: none;
     border-radius: 16%;
     padding: 16px 8px;
-    
+
     font-family: 'Josefin Sans', sans-serif;
-    font-weight: 900; /* Poids de police fort pour bouton primaire */
+    font-weight: 900;
+    /* Poids de police fort pour bouton primaire */
     font-size: 20px;
-    letter-spacing: 5%;
-    cursor: pointer; 
+    letter-spacing: 0.5cap;
+    cursor: pointer;
 }
 
 .Se_connecter:focus {
@@ -115,26 +117,49 @@ input::placeholder {
 /* 4. Bouton/Lien "Se créer un compte" (Style Secondaire) */
 /* ==================================== */
 .creerCompte {
-    /* Ce bouton est le lien secondaire pour la navigation */
-    display: block; 
-    width: 276px; 
-    margin: 10px auto; /* Centrage horizontal */
-    
-    /* Le style par défaut des boutons de votre navigateur peut ajouter des bordures. */
-    background: none; 
+
+    display: block;
+    margin: none;
     border: none;
-    padding: 0;
-    
+    padding: 0 0 0 0;
+    background-color: #1B1B1B;
+
     text-align: center;
     font-family: 'Josefin Sans', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    
-    color: #F6F6F6; 
-    text-decoration: none; /* Important: enlève le surlignement si c'était un lien */
-    cursor: pointer;
+
+
+
 }
 
-.creerCompte:hover {
-    text-decoration: underline; /* Ajout d'une ligne au survol pour indiquer le lien */
+.creerCompteButtonLogin {
+    width: 100%;
+    max-width: 900px;
+    /* Couleurs */
+    background-color: #1B1B1B;
+    /* Fond sombre */
+    color: #808080;
+    /* Gris comme demandé */
+
+    /* Reset des styles par défaut */
+    padding: 10px 20px;
+    cursor: pointer;
+
+    /* Typographie */
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    text-decoration: underline;
+    /* Ton style actuel */
+
+    /* SUPPRESSION DES CONTOURS */
+    border: none;
+    /* Supprime la bordure par défaut */
+    outline: none;
+    /* Supprime le liseré bleu/blanc au clic */
+    box-shadow: none;
+    /* Sécurité au cas où une ombre simulerait un contour */
+
+    letter-spacing: 0.8cap;
+
+
+
 }
