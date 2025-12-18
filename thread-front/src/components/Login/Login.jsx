@@ -135,6 +135,7 @@ export default function Login({setCurrentUser}) {
           Se créer un compte
         </button>
       </div>
+      </div>
     )
   );
 }
