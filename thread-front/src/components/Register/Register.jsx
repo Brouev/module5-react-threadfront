@@ -97,7 +97,7 @@ function Register({ setCurrentUser }) {
 
       <div className="Groupe2">
         {/* Le formulaire est lié à la fonction handleSubmit lors de sa soumission. */}
-        <form onSubmit={handleSubmit}>
+        <form className="registerForm" onSubmit={handleSubmit}>
 
           {/* Champ Pseudo : doit être lié à l'état 'pseudo' via value et onChange. */}
           <input

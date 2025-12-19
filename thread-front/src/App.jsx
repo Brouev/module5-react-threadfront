@@ -21,7 +21,10 @@ function App() {
       <Route element={<Guard currentUser={currentUser} />}>
         <Route path="/posts/:postId" element={<Post currentUser={currentUser} />} />
         <Route path="/profile" element={<Profile currentUser={currentUser} />} />
-        <Route path="/add-post" element={<AddPost />} />
+        <Route
+          path="/add-post"
+          element={<AddPost currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+        />
         <Route path="/settings" element={<Settings />} />
       </Route>
     </Routes>
