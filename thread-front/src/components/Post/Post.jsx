@@ -4,6 +4,7 @@ import CommentCard from "../CommentCard/CommentCard.jsx";
 import { AddComment } from "../AddComment/AddComment.jsx";
 import PostDetailCard from "../PostDetailCard/PostDetailCard.jsx";
 import "./Post.css";
+import { Link} from "react-router-dom";
 
 export default function Post({ currentUser }) {
   const { postId } = useParams();
@@ -159,15 +160,22 @@ export default function Post({ currentUser }) {
 
 
 
+{currentUser && (
+  <div className="posts-count">
+    <span className="bulle">💬</span>
+    <span>{commentsCount}</span>
+  </div> 
+)}
+
 
 
       {currentUser && <AddComment onSubmit={handleAddComment} />}
 
       <nav className="bottom-nav">
-        <button className="nav-btn nav-left" onClick={() => navigate("/add-post")}>➕</button>
-        <button className="nav-btn nav-square" onClick={() => navigate("/profile")}>👤</button>
+<Link to="/add-post" className="nav-btn nav-left">➕</Link>
+<Link to="/profile" className="nav-btn nav-square">👤</Link>
+<Link to="/" className="nav-btn nav-right">💬</Link>
 
-        <button className="nav-btn nav-right" onClick={() => navigate("/")}>💬</button>
       </nav>
 
 
