@@ -35,12 +35,24 @@
 }
 
 .posts-count {
+    /* width: calc(100% - 40px); */
+    /* max-width: 450px; */
+    /* margin-left: 0.5rem; */
+
     display: flex;
-    align-items: center;
+    justify-content: start;
+    width: 100%;
+    padding: 2rem;
     gap: 8px;
-    font-size: 14px;
+    font-size: 25px;
     color: #cccccc;
+
 }
+
+.bulle {
+    margin-left: 7rem;
+}
+
 
 .nav-small {
     width: 24px !important;
