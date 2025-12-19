@@ -30,9 +30,7 @@ export default function Post({ currentUser }) {
         const data = await response.json();
         const allPosts = data.AllPostsAndComments || [];
 
-        const found = allPosts.find(
-          (p) => p.id === Number(postId)
-        );
+        const found = allPosts.find((p) => p.id === Number(postId));
 
         if (!found) {
           setError("Post introuvable.");
