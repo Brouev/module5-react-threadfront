@@ -164,7 +164,7 @@ export default function Post({ currentUser }) {
       {currentUser && <AddComment onSubmit={handleAddComment} />}
 
       <nav className="bottom-nav">
-        <button className="nav-btn nav-left" onClick={() => navigate("/create")}>➕</button>
+        <button className="nav-btn nav-left" onClick={() => navigate("/add-post")}>➕</button>
         <button className="nav-btn nav-square" onClick={() => navigate("/profile")}>👤</button>
 
         <button className="nav-btn nav-right" onClick={() => navigate("/")}>💬</button>

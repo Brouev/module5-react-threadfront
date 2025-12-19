@@ -72,3 +72,9 @@ export default function Settings({ currentUser }) {
     </div>
   );
 }
+<nav className="bottom-nav">
+  <button className="nav-btn nav-left" onClick={() => navigate("/create")}>➕</button>
+  <button className="nav-btn nav-square" onClick={() => navigate("/profile")}>👤</button>
+  <button className="nav-btn nav-right" onClick={() => navigate("/")}>💬</button>
+</nav>
+
