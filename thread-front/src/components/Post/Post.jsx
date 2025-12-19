@@ -158,9 +158,7 @@ export default function Post({ currentUser }) {
 </div>
 
 
-<div className="post-comments-header">
-  <span>💬{commentsCount}</span>
-</div>
+
 
 
       {currentUser && <AddComment onSubmit={handleAddComment} />}

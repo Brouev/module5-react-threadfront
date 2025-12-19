@@ -1,19 +1,28 @@
 .comment-card {
-    width: 70vw;
-    min-height: 10vh;
+  width: 80vw;               
+  margin-left: 0.5em;        
+  min-height: 10vh;
 
-    background: linear-gradient(to right, white, grey);
-    border-radius: 2em;
+  background: linear-gradient(to right bottom, #bab8b8, #5f5e5e);
+  border-radius: 1em;
 
-    display: flex;
-    flex-direction: column;
-    padding-left: 1em;
-    font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  font-weight: bold;
 
+  margin-bottom: 1.5em;      /* espace entre les commentaires */
 }
 
-.comment-date {
-    font-size: 0.75em;
-    color: #7c7c7c;
+.comment-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%;
+}
 
+
+.comment-date {
+  font-size: 0.75em;
+  color: #7c7c7c;
 }
