@@ -1,6 +1,6 @@
 .add-comment input {
-   width: 80vw;               
-  margin-left: 0.5em;        
+  width: 80vw;
+  margin-left: 0.5em;
   min-height: 10vh;
 
   background: linear-gradient(to right bottom, #bab8b8, #5f5e5e);
@@ -10,6 +10,6 @@
   flex-direction: column;
   padding: 1em;
   font-weight: bold;
-
-  margin-bottom: 1.5em; 
+  margin-top: 20px;
+  margin-bottom: 1.5em;
 }
