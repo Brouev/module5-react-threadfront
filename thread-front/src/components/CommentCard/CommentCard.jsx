@@ -2,8 +2,7 @@ import "./CommentCard.css";
 
 function CommentCard({ comment, currentUser, onDelete }) {
   // Est-ce que l'utilisateur connecté est l'auteur du commentaire ?
-  const isAuthor =
-    currentUser && currentUser.username === comment.author;
+  const isAuthor = currentUser && currentUser.username === comment.author;
 
   function handleDelete() {
     if (!onDelete) return;
@@ -11,7 +10,9 @@ function CommentCard({ comment, currentUser, onDelete }) {
   }
 
   return (
-    <div className="comment-card">
+    <div className="comment-card">    
+     
+
       <div className="comment-header">
         <div className="comment-author">
           <h3>@{comment.author}</h3>

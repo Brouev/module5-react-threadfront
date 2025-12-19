@@ -77,17 +77,10 @@
     color: #cccccc;
 }
 
-/* Add comment */
-.add-comment {
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto 20px auto;
-}
+
 
 /* Commentaires list */
 .post-comments-list {
-    width: calc(100% - 40px);
-    max-width: 450px;
     margin: 0 auto;
     color: #333333;
 }
@@ -152,4 +145,3 @@
     width: calc(100% - 40px);
     max-width: 450px;
 }
-

@@ -20,10 +20,10 @@ export function AddComment({ onSubmit }) {
         onChange={(e) => setContent(e.target.value)}
       />
 
-            <button type="submit"></button>
+            <button type="submit" hidden></button>
 
     </form>
   );
 }
-// Essai juste ce lundi 15 ajouter l'export par défaut
+
 export default AddComment;
