@@ -1,3 +1,11 @@
+/*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 1px solid red;
+}
+
+
 /* ==================================== */
 /* 1. Conteneur principal (La balise div class="Connexion") */
 /* ==================================== */
@@ -47,19 +55,24 @@
 
 }
 
-/* ==================================== */
-/* 2. Le Formulaire et les Champs de Saisie */
-/* ==================================== */
 
 /* Applique un style Flexbox au formulaire pour organiser les inputs verticalement */
-.Connexion form {
+.ConnexionFormLogin{
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 
 }
 
+.connexionformlogin-form{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+
+}
 /* Style générique des inputs (cohérence avec register.css) */
 .email,
 .password {
@@ -76,7 +89,8 @@
     outline: none;
 }
 
-input::placeholder {
+.email,
+.password::placeholder {
     color: #F6F6F6;
     opacity: 0.7;
 }
@@ -138,7 +152,7 @@ input::placeholder {
     background-color: #1B1B1B;
     /* Fond sombre */
     color: #808080;
-    /* Gris comme demandé */
+    /* Gris */
 
     /* Reset des styles par défaut */
     padding: 10px 20px;
@@ -148,7 +162,7 @@ input::placeholder {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
     text-decoration: underline;
-    /* Ton style actuel */
+    
 
     /* SUPPRESSION DES CONTOURS */
     border: none;

@@ -13,7 +13,7 @@ function formatDateFR(date) {
   return `${hh}:${mm} - ${day} ${month} ${year}`;
 }
 
-export default function AddPost() {
+export default function AddPost({ currentUser, setCurrentUser }) {
   const [title] = useState("Post");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
@@ -24,26 +24,30 @@ export default function AddPost() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-
-    if (!content.trim()) {
-      setError("Le contenu est obligatoire.");
-      return;
-    }
+    // ... validation ...
 
     try {
-      await request("/posts", {
+      // 2. On récupère le post créé renvoyé par le serveur
+      const newPost = await request("/posts", {
         method: "POST",
         body: { title, content },
-        auth: true, // cookie JWT
+        auth: true,
       });
 
-      // redirect auto vers le feed
-      navigate("/");
+      // 3. MISE À JOUR CRUCIALE : On met à jour l'utilisateur global
+      if (setCurrentUser && currentUser) {
+          setCurrentUser({
+              ...currentUser,
+              latestPost: newPost // On remplace le dernier post par celui-ci
+          });
+      }
+
+      navigate("/profile"); // Redirige vers le profil pour voir le résultat !
     } catch (err) {
       setError(err.message || "Erreur lors de la création du post.");
     }
   }
+  
 
   return (
     <div className="addpost-page">

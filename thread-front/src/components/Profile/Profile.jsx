@@ -1,39 +1,30 @@
 import { useEffect, useState } from "react";
 import "./Profile.css"; // Importe les styles CSS spécifiques au composant Profile.
 import { useNavigate } from "react-router-dom"; // Importe le Hook useNavigate de react-router-dom pour la navigation programmatique.
-import Post from "../Post/Post";
-import PostCard from "../PostCard/PostCard";
-import AddComment from "../AddComment/AddComment";
-import AddPost from "../AddPost/AddPost";
 
+//  On ajoute la fonction de formatage ici aussi pour éviter l'erreur "ReferenceError"
+function formatDateFR(date) {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toLocaleDateString("fr-FR", { 
+        hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'short' 
+    });
+}
 
 
 export default function Profile({ currentUser }) {
-    // Définit le composant fonctionnel "Profile" qui reçoit "currentUser" en tant que prop.
-    const navigate = useNavigate(); // Initialise la fonction de navigation.
+    const navigate = useNavigate();
 
-    const [posts, setPosts] = useState([]);
-    const [username] = useState("");
-
+    // Redirection si déconnecté
     useEffect(() => {
-        if (!currentUser) {
-            // Si aucun utilisateur n'est connecté, redirige vers la page de connexion.
-            return;
-
-        }
+        if (!currentUser) navigate("/login");
     }, [currentUser, navigate]);
 
-    if (!currentUser) {
-        return null;
-    }
+    if (!currentUser) return null;
 
-    const post = currentUser.latestPost;
-
-
-
-    //  Si l'utilisateur a un post (CAS NORMAL)
-
-
+  const postsList = currentUser.posts || 
+                      currentUser.Posts || 
+                      (currentUser.latestPost ? [currentUser.latestPost] : []);
 
     return (
         <div className="ProfileContainer">
@@ -45,23 +36,28 @@ export default function Profile({ currentUser }) {
                 </div>
                 <h3>@{currentUser.username}</h3>
             </div>
-            {post ? (
-                <>
-                    <div className="postContentProfile">
-                        <h2>{post.title}</h2>
-                        <p>{post.content}</p>
-                        {/* ... tes commentaires ... */}
-                    </div>
+            {/* 2. On utilise postsToDisplay (notre variable "propre") */}
+            {postsList.length > 0 ? (
+                postsList.map((p, index) => (
+                    <div key={p.id || index} className="post-wrapper">
+                        <div className="postContentProfile">
+                            <h2>{p.title}</h2>
+                            <p>{p.content}</p>
+                            <span>{p.createdAt ? formatDateFR(p.createdAt) : ""}</span>
+                        </div>
 
-                    <div className="postCommentsProfile">
-
-                        {post.comments?.map(comment => (
-                            <div key={comment.id} className="comment">
-                                <strong>{comment.author}:</strong> {comment.text}
+                        {p.comments?.length > 0 && (
+                            <div className="postCommentsProfile">
+                                {p.comments.map(comment => (
+                                    <div key={comment.id} className="comment">
+                                        <strong>{comment.author}:</strong> {comment.text}
+                                    </div>
+                                ))}
                             </div>
-                        ))}
+                        )}
+                        <hr /> {/* Séparateur entre les posts */}
                     </div>
-                </>
+                ))
             ) : (
                 <div className="postContentProfile">
                     <p>Vous n'avez pas encore publié de contenu.</p>
